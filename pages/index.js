@@ -4,6 +4,7 @@ import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
+import DayOne from './posts/dayOneInteractive';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -26,6 +27,7 @@ export default function Home({ allPostsData }) {
           This is my mission log.
         </p>
       </section>
+      <Link href='/posts/dayOneInteractive'>Day one</Link>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Mission Log</h2>
         <ul className={utilStyles.list}>
