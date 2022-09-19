@@ -76,7 +76,7 @@ export default function DayTwo() {
 
   return (
     <Layout>
-      <h1>Day Two Mission Log</h1>
+      <h1>Day Two Mission Workbook</h1>
       <h2>Problem 1:</h2>
       <p>
         {`My findings ${calculatePosition(inputs)}`}

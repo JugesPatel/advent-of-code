@@ -1,3 +1,5 @@
+// Regex - (^[0-9 ]*$\1)
+
 export const inputs = [
   104,
   111,

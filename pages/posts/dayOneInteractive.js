@@ -38,10 +38,14 @@ export default function DayOne() {
 
   return (
     <Layout>
-      <h1>Day One Mission Interactive</h1>
+      <h1>Day One Workbook</h1>
+      <h2>Problem 1:</h2>
       <p>
-        {`Problem One: ${calculateDepthIncrease(inputs)}`}
-        {`Problem One: ${calculateSlidingWindowIncreases(inputs)}`}
+        {`My findings: ${calculateDepthIncrease(inputs)}`}
+      </p>
+      <h2>Problem 2:</h2>
+      <p>
+        {`My findings: ${calculateSlidingWindowIncreases(inputs)}`}
       </p>
     </Layout>
   );

@@ -27,7 +27,7 @@ export default function Home({ allPostsData }) {
           This is my mission log.
         </p>
       </section>
-      <Link href='/posts/dayTwoInteractive'>Click</Link>
+      <Link href='/posts/dayThreeInteractive'>Click</Link>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Mission Log</h2>
         <ul className={utilStyles.list}>
