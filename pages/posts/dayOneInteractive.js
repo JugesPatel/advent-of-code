@@ -16,16 +16,32 @@ export default function DayOne() {
     return depthIncreases;
   };
 
+  function calculateSlidingWindowIncreases(inputArray) {
+    let slidingWindowIncreases = 0;
+    // Can't trust faulty inputs since this mission is critical.
+    if (Array.isArray(inputArray)) {
+
+      // We are reducing the max value of i since this will get us to the last group.
+      for (let i = 0; i < inputArray.length - 3; i++) {
+        // The first group is this input (i) and the next two
+        const sumFirstGroup = inputArray[i] + inputArray[i + 1] + inputArray[i + 2];
+
+        // The second group is the next three inputs after i
+        const sumSecondGroup = inputArray[i + 1] + inputArray[i + 2] + inputArray[i + 3];
+
+        // Compare the groups to see if the sum of the next is greater than this one.
+        if (sumSecondGroup > sumFirstGroup) slidingWindowIncreases++;
+      };
+    };
+    return slidingWindowIncreases;
+  };
+
   return (
     <Layout>
-      <h1>Day One Mission Log</h1>
+      <h1>Day One Mission Interactive</h1>
       <p>
-        The elves have provided me with a submersible device equipped with a sonar system.
-        The report however is a little cryptic. Each line is a measurement of the depth of the sea floor.
-        I need to find out how quickly the depth increases.
-      </p>
-      <p>
-        {`My findings ${calculateDepthIncrease(inputs)}`}
+        {`Problem One: ${calculateDepthIncrease(inputs)}`}
+        {`Problem One: ${calculateSlidingWindowIncreases(inputs)}`}
       </p>
     </Layout>
   );
