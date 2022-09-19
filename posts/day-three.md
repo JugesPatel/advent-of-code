@@ -53,6 +53,78 @@ function calculatePowerConsumption(inputArray) {
 
 ## Part Two
 
-Turns out I need to figure out my *life support* rating as well. Wouldn't want to run out down here. This calculation will be done by multiplying the *oxygen generator rating* and *CO2 scrubber rating*.
+Turns out I need to figure out my *life support* rating as well. Wouldn't want to run out down here. This calculation will be done by multiplying the *oxygen generator rating* and *CO2 scrubber rating*. This one requires a bit of recursion since the problem set will be lower every time. Let's see what we can come up with.
 
 ### Second Solution
+
+```js
+function getOxygenRating(inputArray, bitPosition) {
+  let onesLeadingArray = [];
+  let zerosLeadingArray = [];
+  let onesCount = 0;
+  let zerosCount = 0;
+
+  for (let i = 0; i < inputArray.length; i++) {
+    // Count the number of ones or zeros and track them in an array using the bit position.
+    if (parseInt(inputArray[i][bitPosition]) === 1) {
+      onesCount += 1;
+      onesLeadingArray.push(inputArray[i]);
+    } else {
+      zerosCount += 1;
+      zerosLeadingArray.push(inputArray[i]);
+    }
+  }
+
+  // If we only have one input in the array left, return the result.
+  if (inputArray.length === 1) {
+    return inputArray[0];
+  }
+
+  // Based on our criteria, if we have a tie or ones is greater than zeros, call the function again with the ones array.
+  // If not, call it with the zeros array.
+  if (onesCount >= zerosCount) {
+    return getOxygenRating(onesLeadingArray, bitPosition + 1);
+  } else {
+    return getOxygenRating(zerosLeadingArray, bitPosition + 1);
+  }
+}
+
+function getScrubberRating(inputArray, bitPosition) {
+  let onesLeadingArray = [];
+  let zerosLeadingArray = [];
+  let onesCount = 0;
+  let zerosCount = 0;
+
+  for (let i = 0; i < inputArray.length; i++) {
+    // Count the number of ones or zeros and track them in an array using the bit position.
+    if (parseInt(inputArray[i][bitPosition]) === 1) {
+      onesCount += 1;
+      onesLeadingArray.push(inputArray[i]);
+    } else {
+      zerosCount += 1;
+      zerosLeadingArray.push(inputArray[i]);
+    }
+  }
+
+  // If we only have one input in the array left, return the result.
+  if (inputArray.length === 1) {
+    return inputArray[0];
+  }
+
+  // Based on our criteria, if we have the count of ones less than zero then call the function again with the ones array.
+  // If not, call it with the zeros array.
+  if (onesCount < zerosCount) {
+    return getScrubberRating(onesLeadingArray, bitPosition + 1);
+  } else {
+    return getScrubberRating(zerosLeadingArray, bitPosition + 1);
+  }
+}
+
+function calculateLifeSupport(inputArray) {
+  const oxygenRating = getOxygenRating(inputArray, 0);
+  const scrubberRating = getScrubberRating(inputArray, 0);
+
+  return parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2);
+};
+
+```

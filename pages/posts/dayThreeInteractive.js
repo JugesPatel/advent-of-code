@@ -59,8 +59,73 @@ export default function DayThree() {
     return parseInt(gammaString, 2) * parseInt(epsilonString, 2);
   };
 
-  function calculateLifeSupport(inputArray) {
+  function getOxygenRating(inputArray, bitPosition) {
+    let onesLeadingArray = [];
+    let zerosLeadingArray = [];
+    let onesCount = 0;
+    let zerosCount = 0;
 
+    for (let i = 0; i < inputArray.length; i++) {
+      // Count the number of ones or zeros and track them in an array using the bit position.
+      if (parseInt(inputArray[i][bitPosition]) === 1) {
+        onesCount += 1;
+        onesLeadingArray.push(inputArray[i]);
+      } else {
+        zerosCount += 1;
+        zerosLeadingArray.push(inputArray[i]);
+      }
+    }
+
+    // If we only have one input in the array left, return the result.
+    if (inputArray.length === 1) {
+      return inputArray[0];
+    }
+
+    // Based on our criteria, if we have a tie or ones is greater than zeros, call the function again with the ones array.
+    // If not, call it with the zeros array.
+    if (onesCount >= zerosCount) {
+      return getOxygenRating(onesLeadingArray, bitPosition + 1);
+    } else {
+      return getOxygenRating(zerosLeadingArray, bitPosition + 1);
+    }
+  }
+
+  function getScrubberRating(inputArray, bitPosition) {
+    let onesLeadingArray = [];
+    let zerosLeadingArray = [];
+    let onesCount = 0;
+    let zerosCount = 0;
+
+    for (let i = 0; i < inputArray.length; i++) {
+      // Count the number of ones or zeros and track them in an array using the bit position.
+      if (parseInt(inputArray[i][bitPosition]) === 1) {
+        onesCount += 1;
+        onesLeadingArray.push(inputArray[i]);
+      } else {
+        zerosCount += 1;
+        zerosLeadingArray.push(inputArray[i]);
+      }
+    }
+
+    // If we only have one input in the array left, return the result.
+    if (inputArray.length === 1) {
+      return inputArray[0];
+    }
+
+    // Based on our criteria, if we have the count of ones less than zero then call the function again with the ones array.
+    // If not, call it with the zeros array.
+    if (onesCount < zerosCount) {
+      return getScrubberRating(onesLeadingArray, bitPosition + 1);
+    } else {
+      return getScrubberRating(zerosLeadingArray, bitPosition + 1);
+    }
+  }
+
+  function calculateLifeSupport(inputArray) {
+    const oxygenRating = getOxygenRating(inputArray, 0);
+    const scrubberRating = getScrubberRating(inputArray, 0);
+
+    return parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2);
   };
 
   return (
@@ -72,7 +137,7 @@ export default function DayThree() {
       </p>
       <h2>Problem 2:</h2>
       <p>
-        {`My findings ${calculateLifeSupport(sampleInput)}`}
+        {`My findings ${calculateLifeSupport(inputs)}`}
       </p>
     </Layout>
   );
