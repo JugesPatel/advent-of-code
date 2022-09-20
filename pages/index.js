@@ -1,18 +1,9 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from 'next/head'
+import Layout, { siteTitle } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
+import { getSortedPostsData } from '../lib/posts'
+import Link from 'next/link'
 import Date from '../components/date'
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
-
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-}
 
 export default function Home({ allPostsData }) {
   return (
@@ -22,8 +13,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Santa's elves have dropped the keys to their sleigh somewhere into the ocean and it's up to me to find them.
-          This is my mission log.
+          The elves have dropped the keys to their sleigh somewhere into the ocean and now I must find them. This is my mission log.
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -44,4 +34,13 @@ export default function Home({ allPostsData }) {
       </section>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }

@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
 
 const name = 'Jugal Patel';
 export const siteTitle = 'Advent of Code';
@@ -11,7 +11,6 @@ export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
           content="Advent of code 2021 submission"
