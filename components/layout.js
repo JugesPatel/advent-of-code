@@ -29,6 +29,7 @@ export default function Layout({ children, home }) {
               height={144}
               width={144}
               alt={name}
+              unoptimized
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -43,6 +44,7 @@ export default function Layout({ children, home }) {
                   height={108}
                   width={108}
                   alt={name}
+                  unoptimized
                 />
               </a>
             </Link>
