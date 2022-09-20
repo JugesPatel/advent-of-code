@@ -9,6 +9,7 @@ The elves have provided me with a submersible device equipped with a sonar syste
 
 ### First Solution
 
+>
 ```js
 function calculateDepthIncrease(inputArray) {
   let depthIncreases = 0;
