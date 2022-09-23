@@ -1,5 +1,6 @@
-import Layout from './layout';
-import { inputs } from '../inputs/dayThree';
+import { useState } from 'react';
+import Layout from '../../components/layout';
+import { inputs } from '../../inputs/dayThree';
 
 export default function DayThree() {
   const sampleInput = [
@@ -16,6 +17,9 @@ export default function DayThree() {
     '00010',
     '01010',
   ]
+
+  const [p1, setP1] = useState(null);
+  const [p2, setP2] = useState(null);
 
   function calculatePowerConsumption(inputArray) {
     let countOnesMap = new Map();
@@ -54,7 +58,7 @@ export default function DayThree() {
       }
     }
 
-    return parseInt(gammaString, 2) * parseInt(epsilonString, 2);
+    setP1(parseInt(gammaString, 2) * parseInt(epsilonString, 2));
   };
 
   function getOxygenRating(inputArray, bitPosition) {
@@ -123,19 +127,21 @@ export default function DayThree() {
     const oxygenRating = getOxygenRating(inputArray, 0);
     const scrubberRating = getScrubberRating(inputArray, 0);
 
-    return parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2);
+    setP2(parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2));
   };
 
   return (
     <Layout>
       <h1>Day Three Workbook</h1>
       <h2>Problem 1:</h2>
+      <button onClick={() => calculatePowerConsumption(inputs)}>Solve problem</button>
       <p>
-        {`My findings ${calculatePowerConsumption(inputs)}`}
+        {p1 ? `Answer: ${p1}` : null}
       </p>
       <h2>Problem 2:</h2>
+      <button onClick={() => calculateLifeSupport(inputs)}>Solve problem</button>
       <p>
-        {`My findings ${calculateLifeSupport(inputs)}`}
+        {p2 ? `Answer: ${p2}` : null}
       </p>
     </Layout>
   );

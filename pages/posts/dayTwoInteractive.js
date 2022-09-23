@@ -1,5 +1,6 @@
-import Layout from './layout';
-import { inputs } from '../inputs/dayTwo'
+import { useState } from 'react';
+import Layout from '../../components/layout';
+import { inputs } from '../../inputs/dayTwo'
 
 export default function DayTwo() {
   const sampleInput = [
@@ -10,6 +11,9 @@ export default function DayTwo() {
     'down 8',
     'forward 2',
   ]
+
+  const [p1, setP1] = useState(null);
+  const [p2, setP2] = useState(null);
 
   function calculatePosition(inputArray) {
     // Initialize my starting position.
@@ -37,7 +41,7 @@ export default function DayTwo() {
       }
     }
 
-    return horizontalPos * depth;
+    setP1(horizontalPos * depth);
   };
 
   function calculateAimedPosition(inputArray) {
@@ -69,19 +73,21 @@ export default function DayTwo() {
       }
     }
 
-    return horizontalPos * depth;
+    setP2(horizontalPos * depth);
   };
 
   return (
     <Layout>
       <h1>Day Two Mission Workbook</h1>
       <h2>Problem 1:</h2>
+      <button onClick={() => calculatePosition(inputs)}>Solve problem</button>
       <p>
-        {`My findings ${calculatePosition(inputs)}`}
+        {p1 ? `Answer: ${p1}` : null}
       </p>
       <h2>Problem 2:</h2>
+      <button onClick={() => calculateAimedPosition(inputs)}>Solve problem</button>
       <p>
-        {`My findings ${calculateAimedPosition(inputs)}`}
+        {p2 ? `Answer: ${p2}` : null}
       </p>
     </Layout>
   );

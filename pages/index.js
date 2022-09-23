@@ -16,6 +16,15 @@ export default function Home({ allPostsData }) {
           The elves have dropped the keys to their sleigh somewhere into the ocean and now I must find them. This is my mission log.
         </p>
       </section>
+      <section>
+        <h2>Interactive pages:</h2>
+        <Link href={`/posts/dayOneInteractive`}>Day One</Link>
+        <br />
+        <Link href={`/posts/dayTwoInteractive`}>Day Two</Link>
+        <br />
+        <Link href={`/posts/dayThreeInteractive`}>Day Three</Link>
+        <br />
+      </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Mission Log</h2>
         <ul className={utilStyles.list}>

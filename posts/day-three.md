@@ -126,5 +126,4 @@ function calculateLifeSupport(inputArray) {
 
   return parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2);
 };
-
 ```

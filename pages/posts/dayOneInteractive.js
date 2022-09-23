@@ -1,7 +1,11 @@
-import Layout from './layout';
-import { inputs } from '../inputs/dayOne'
+import { useState } from 'react';
+import Layout from '../../components/layout';
+import { inputs } from '../../inputs/dayOne'
 
 export default function DayOne() {
+
+  const [p1, setP1] = useState(null);
+  const [p2, setP2] = useState(null);
 
   function calculateDepthIncrease(inputArray) {
     let depthIncreases = 0;
@@ -11,7 +15,7 @@ export default function DayOne() {
         if (inputArray[i + 1] > inputArray[i]) depthIncreases++;
       };
     };
-    return depthIncreases;
+    setP1(depthIncreases);
   };
 
   function calculateSlidingWindowIncreases(inputArray) {
@@ -31,20 +35,22 @@ export default function DayOne() {
         if (sumSecondGroup > sumFirstGroup) slidingWindowIncreases++;
       };
     };
-    return slidingWindowIncreases;
+    setP2(slidingWindowIncreases);
   };
 
   return (
     <Layout>
       <h1>Day One Workbook</h1>
       <h2>Problem 1:</h2>
+      <button onClick={() => calculateDepthIncrease(inputs)}>Solve problem</button>
       <p>
-        {`My findings: ${calculateDepthIncrease(inputs)}`}
+        {p1 ? `Answer: ${p1}` : null}
       </p>
       <h2>Problem 2:</h2>
+      <button onClick={() => calculateSlidingWindowIncreases(inputs)}>Solve problem</button>
       <p>
-        {`My findings: ${calculateSlidingWindowIncreases(inputs)}`}
+        {p2 ? `Answer: ${p2}` : null}
       </p>
-    </Layout>
+    </Layout >
   );
 }
